@@ -1,13 +1,133 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Readex+Pro:wght@200&display=swap');
+
+
+html,body{
+    margin: 0;
+    padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+    font-family:  'Readex Pro';
+}
+
+.primary-button{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    background: linear-gradient(45deg, #815703, #ffef40);
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+}
+
+.primary-button:hover{
+    background:linear-gradient(260deg, #815703, #ffef40) ;
+}
+
+.primary-title{
+    font-size: 45px;
+    
+}
+
+body{
+    text-align: center;
+    height: 100%;
+}
+
+/*----nav-----*/
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+nav .navbutton{
+    color: #ffef40;
+    background-color: #815703;
+    border-radius: 10px;
+    font-size: large;
+    padding: 10px ,20px;
+    border: none;
+    margin: 15px;
+    height: 40px;
+    width: 80px;
+    margin-right:2rem ;
+    margin-top:3.3rem;
+
+}
+nav .navbutton:disabled{
+    background-color: #462f02;
+
+}
+nav .logo-container{
+    width: 140px;
+    margin: 15px;
+
+}
+
+nav .logo-container .logo{
+    width: 100%;
+}
+
+
+/*---home---*/
+
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background:#fff6f7;
+    
+}
+
+.Auth-Modal{
+    left: 0;
+    right: 0;
+    position: relative;
+    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 360px;
+    height: 100vh;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+
+}
+.Auth-Modal .close-icon{
+    float: right;
+    cursor: pointer;
+}
+
+.secondary-btn{
+    color: rgb(121,119,119);
+    background-color: white;
+    font-weight: 500px;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: solid 2px rgb(121,119,119);
+    margin: 6px;
+}
+
+.secondary-btn:hover{
+    color: rgb(48,48,48);
+    border: solid 2px rgb(48,48,48);
+}
+
+h2{
+    font-style: italic;
+}
+
+.Auth-Modal .form{
+    display: flex;
+    flex-direction: column;
+
+}
+.Auth-Modal input[type=password],[type=email]{
+    padding: 8px;
+    margin: 8px;
+    font-size: 17px;
 }
