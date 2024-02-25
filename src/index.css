@@ -33,6 +33,7 @@ html,body{
 body{
     text-align: center;
     height: 100%;
+    background-color: #fff6f7;
 }
 
 /*----nav-----*/
@@ -79,6 +80,9 @@ nav .logo-container .logo{
     position: fixed;
     background:#fff6f7;
     
+}
+.onboarding {
+background: #fff6f7;
 }
 
 .Auth-Modal{
@@ -130,4 +134,91 @@ h2{
     padding: 8px;
     margin: 8px;
     font-size: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+/*_______Onboarding______*/
+.OnBoarding{
+    
+}
+.OnBoarding form {
+    display: flex;
+    justify-content: center;
+
+}
+
+.OnBoarding form section{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 35%;
+    text-align: start;
+}
+
+.OnBoarding form input{
+    padding: 15px 30px;
+    margin: 10px 0px;
+    font-size: 15px;
+    border: solid 2px rgb(219 ,219 ,219);
+    border-radius: 10px;
+}
+.OnBoarding form input::-webkit-outer-spin-button,
+.OnBoarding form input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+.OnBoarding form label{
+ margin: 10px 0px;
+
+}
+.OnBoarding form .multipleinput input{
+    margin-right: 10px;
+}
+.OnBoarding form .multipleinput label{
+    padding: 10px;
+    border: solid 2px rgb(144,144,144);
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+
+
+.OnBoarding form .multipleinput{
+    display: flex;
+    flex-direction: row;
+}
+
+.OnBoarding form .multipleinput input[type="radio"]{
+    display: none;
+}
+
+.OnBoarding form .multipleinput input[type="number"]{
+    width: 10%;
+}
+
+.OnBoarding form input[type="radio"]:checked +label{
+    border: solid 2px red;
+}
+
+.OnBoarding form input[type="submit"]:hover{
+    background-color: rgb(235,235,235);
+
+}
+.OnBoarding form input[type="submit"]:active{
+    background-color: rgb(226,115,155);
+}
+
+
+.OnBoarding form .photo-container{
+    width: 100%;
 }

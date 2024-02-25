@@ -2,7 +2,8 @@ import logo from '../images/logo.jpg'
 import React from 'react'
 
 
-const Nav =({authtoken ,setShowModal, showModal,setIssignUp})=>{
+const Nav =({setShowModal, showModal,setIssignUp})=>{
+     const authtoken=false
     const handleclick=()=>{
         setShowModal(true)
         setIssignUp(false)
