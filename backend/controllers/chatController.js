@@ -1,7 +1,7 @@
 const Conversation = require('../models/Conversation');
 const User = require('../models/User');
 
-const Message = require('../models/message');
+const Message = require('../models/Message');
 
 
 const getConversations = async (req, res) => {
