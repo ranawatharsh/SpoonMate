@@ -102,7 +102,7 @@ const HomePage = ({ userInfo }) => {
             if (!userInfo || !userInfo.token) return;
             try {
                 setLoading(true);
-                const response = await fetch('http://127.0.0.1:5000/api/users/matches', {
+                const response = await fetch('https://spoonmate.onrender.com/api/users/matches', {
                     headers: { 'Authorization': `Bearer ${userInfo.token}` },
                 });
                 const data = await response.json();
@@ -119,7 +119,7 @@ const HomePage = ({ userInfo }) => {
 
     const handleAction = async (targetUserId, action) => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/api/users/action', {
+            const response = await fetch('https://spoonmate.onrender.com/api/users/action', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userInfo.token}` },
                 body: JSON.stringify({ targetUserId, action }),

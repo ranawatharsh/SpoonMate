@@ -18,7 +18,7 @@ const SignUpPage = ({ onLoginClick, onSignUpSuccess }) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:5000/api/users/signup', {
+            const response = await fetch('https://spoonmate.onrender.com/api/users/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData), // Now only sending the form data

@@ -52,7 +52,7 @@ const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
         formData.append('image', file);
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/api/upload', {
+            const response = await fetch('https://spoonmate.onrender.com/api/upload', {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${userInfo.token}` },
                 body: formData,
@@ -94,7 +94,7 @@ const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch('http://127.0.0.1:5000/api/users/profile', {
+                const response = await fetch('https://spoonmate.onrender.com/api/users/profile', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

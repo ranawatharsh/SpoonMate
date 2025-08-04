@@ -53,7 +53,7 @@ const ChatScreen = ({ userInfo, conversation, onBack }) => {
         if (!newMessage.trim()) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/api/chats/${conversation._id}/messages`, {
+            const response = await fetch(`https://spoonmate.onrender.com/api/chats/${conversation._id}/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

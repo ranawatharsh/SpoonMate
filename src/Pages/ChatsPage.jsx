@@ -32,7 +32,7 @@ const ChatsPage = ({ userInfo, onConversationSelect }) => {
             if (!userInfo || !userInfo.token) return setLoading(false);
             try {
                 setLoading(true);
-                const response = await fetch('http://127.0.0.1:5000/api/chats', {
+                const response = await fetch('https://spoonmate.onrender.com/api/chats', {
                     headers: { 'Authorization': `Bearer ${userInfo.token}` },
                 });
                 const data = await response.json();
