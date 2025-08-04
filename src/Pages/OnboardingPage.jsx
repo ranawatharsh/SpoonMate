@@ -16,7 +16,7 @@ const PlusIcon = () => (
 );
 
 // --- Main Onboarding Page Component ---
-const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
+const OnBoardingPage = ({ userInfo, onOnboardingComplete }) => {
     const [step, setStep] = useState(1);
     const totalSteps = 7;
 
@@ -260,4 +260,4 @@ const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
         </div>
     );
 };
-export default OnboardingPage;
+export default OnBoardingPage;
