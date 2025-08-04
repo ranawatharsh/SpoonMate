@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LandingPage from './Pages/LandingPage';
 import SignUpPage from './Pages/SignUpPage';
 import LoginPage from './Pages/LoginPage';
-import OnBoardingPage from './Pages/OnBoardingPage'; // Corrected Casing
+import OnBoardPage from './Pages/OnBoardPage'; // Corrected Casing
 import DashboardPage from './Pages/DashboardPage';
 
 export default function App() {
@@ -48,7 +48,7 @@ export default function App() {
         case 'login':
             return <LoginPage onSignUpClick={showSignUp} onLoginSuccess={handleLoginSuccess} />;
         case 'onboarding':
-            return <OnBoardingPage userInfo={userInfo} onOnboardingComplete={handleOnboardingComplete} />;
+            return <OnBoardPage userInfo={userInfo} onOnboardingComplete={handleOnboardingComplete} />;
         case 'dashboard':
             return <DashboardPage userInfo={userInfo} onLogout={handleLogout} />;
         case 'landing':
