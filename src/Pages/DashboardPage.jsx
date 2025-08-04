@@ -8,6 +8,7 @@ import ChatScreen from './ChatScreen';
 
 const DislikeIcon = () => <svg className="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>;
 const LikeIcon = () => <svg className="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>;
+const InfoIcon = () => <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>;
 
 const MatchNotification = ({ matchedUser, onContinue }) => (
     <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center z-50 p-4">
@@ -31,6 +32,9 @@ const MatchNotification = ({ matchedUser, onContinue }) => (
 );
 
 const ProfileCard = ({ user }) => {
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [showDetails, setShowDetails] = useState(false);
+
     if (!user) {
         return (
             <div className="relative w-full h-full rounded-2xl bg-white shadow-xl flex items-center justify-center p-8 text-center">
@@ -38,14 +42,49 @@ const ProfileCard = ({ user }) => {
             </div>
         );
     }
-    const age = user.dob ? new Date().getFullYear() - new Date(user.dob).getFullYear() : '';
-    const photoUrl = user.photos && user.photos.length > 0 && user.photos[0] ? user.photos[0] : `https://placehold.co/600x800/dddddd/4A4A4A?text=${user.name}`;
+
+    const { name, dob, photos, bio, profile } = user;
+    const age = dob ? new Date().getFullYear() - new Date(dob).getFullYear() : '';
+    const photoUrls = photos && photos.length > 0 ? photos : [`https://placehold.co/600x800/dddddd/4A4A4A?text=${name}`];
+
+    const nextPhoto = (e) => {
+        e.stopPropagation();
+        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % photoUrls.length);
+    };
+
+    const prevPhoto = (e) => {
+        e.stopPropagation();
+        setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + photoUrls.length) % photoUrls.length);
+    };
+
     return (
-        <div className="relative w-full h-full rounded-2xl bg-white shadow-xl overflow-hidden">
-            <img src={photoUrl} alt={`Profile of ${user.name}`} className="w-full h-full object-cover" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <h2 className="text-white text-3xl font-bold">{user.name}{age && `, ${age}`}</h2>
-                {user.profile && <p className="text-white">Loves {user.profile.favoriteCuisines?.[0] || 'Food'}</p>}
+        <div className="relative w-full h-full rounded-2xl bg-gray-200 shadow-xl overflow-hidden cursor-pointer" onClick={() => setShowDetails(!showDetails)}>
+            <img src={photoUrls[currentPhotoIndex]} alt={`Profile of ${name}`} className="w-full h-full object-cover" />
+            <div className="absolute top-0 left-0 h-full w-1/2" onClick={prevPhoto}></div>
+            <div className="absolute top-0 right-0 h-full w-1/2" onClick={nextPhoto}></div>
+            <div className="absolute top-2 left-0 right-0 flex justify-center gap-2 px-2">
+                {photoUrls.map((_, index) => (
+                    <div key={index} className={`h-1.5 flex-1 rounded-full ${index === currentPhotoIndex ? 'bg-white/90' : 'bg-white/40'}`}></div>
+                ))}
+            </div>
+            <div className={`absolute bottom-0 left-0 right-0 p-4 pt-12 bg-gradient-to-t from-black/80 to-transparent transition-all duration-300 ${showDetails ? 'h-full bg-black/80' : 'h-auto'}`}>
+                <div className="flex justify-between items-end">
+                    <div>
+                        <h2 className="text-white text-3xl font-bold">{name}{age && `, ${age}`}</h2>
+                        <p className="text-white">{profile?.favoriteCuisines?.[0] ? `Loves ${profile.favoriteCuisines[0]}` : ''}</p>
+                    </div>
+                    <button onClick={(e) => { e.stopPropagation(); setShowDetails(!showDetails); }} className="flex-shrink-0"><InfoIcon /></button>
+                </div>
+                {showDetails && (
+                    <div className="mt-4 text-white text-sm overflow-y-auto" style={{maxHeight: 'calc(100% - 80px)'}}>
+                        <p className="font-bold">Bio</p>
+                        <p className="mb-4">{bio || "No bio yet."}</p>
+                        <p className="font-bold">Top Cuisines</p>
+                        <p className="mb-4">{profile?.favoriteCuisines?.join(', ') || 'Not specified'}</p>
+                        <p className="font-bold">Vibe</p>
+                        <p>{profile?.spiceLevel && `${profile.spiceLevel} Spice`} &bull; {profile?.adventurousness || 'Not specified'}</p>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -82,10 +121,7 @@ const HomePage = ({ userInfo }) => {
         try {
             const response = await fetch('http://127.0.0.1:5000/api/users/action', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${userInfo.token}`,
-                },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userInfo.token}` },
                 body: JSON.stringify({ targetUserId, action }),
             });
             const data = await response.json();
@@ -132,8 +168,6 @@ const DashboardPage = ({ userInfo, onLogout }) => {
     const [activeTab, setActiveTab] = useState('home');
     const [activeConversation, setActiveConversation] = useState(null);
 
-    // If a conversation is active, we render the ChatScreen instead of the main dashboard view.
-    // The `onBack` function simply sets the active conversation to null, returning to this view.
     if (activeConversation) {
         return (
             <div className="min-h-screen bg-[#FFF8F0] flex flex-col items-center">

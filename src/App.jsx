@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LandingPage from './Pages/LandingPage';
 import SignUpPage from './Pages/SignUpPage';
 import LoginPage from './Pages/LoginPage';
-import OnboardingPage from './Pages/OnboardingPage';
+import OnboardingPage from './Pages/OnBoardingPage';
 import DashboardPage from './Pages/DashboardPage';
 
 export default function App() {

@@ -8,10 +8,12 @@ const userSchema = new mongoose.Schema({
     gender: { type: String },
     photos: [{ type: String }], 
     
-    // --- NEW FIELDS ---
-    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Stores IDs of users they liked
-    passes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Stores IDs of users they passed on
-    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Stores IDs of mutual matches
+    // --- NEW FIELD ---
+    bio: { type: String, maxLength: 150 }, // Added bio with a character limit
+
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    passes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 
     profile: {
         diet: { type: String },

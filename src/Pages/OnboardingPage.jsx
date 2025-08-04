@@ -18,13 +18,14 @@ const PlusIcon = () => (
 // --- Main Onboarding Page Component ---
 const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
     const [step, setStep] = useState(1);
-    const totalSteps = 6;
+    const totalSteps = 7;
 
     const [profileData, setProfileData] = useState({
         gender: null, dob: '', 
         photos: [null, null, null],
         diet: null, favoriteCuisines: [], spiceLevel: null,
         adventurousness: null, dateStyle: null,
+        bio: '',
     });
     
     const [photoPreviews, setPhotoPreviews] = useState([null, null, null]);
@@ -120,6 +121,7 @@ const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
             case 4: return profileData.favoriteCuisines.length === 0;
             case 5: return !profileData.spiceLevel || !profileData.adventurousness;
             case 6: return !profileData.dateStyle;
+            case 7: return profileData.bio.trim().length === 0;
             default: return true;
         }
     };
@@ -224,6 +226,25 @@ const OnboardingPage = ({ userInfo, onOnboardingComplete }) => {
                                 <ChoiceButton key={option} text={option} onClick={() => updateProfile('dateStyle', option)} isSelected={profileData.dateStyle === option} />
                             ))}
                         </div>
+                    </div>
+                )}
+
+                {step === 7 && (
+                    <div>
+                        <h3 className="text-xl font-semibold text-center text-[#4A4A4A] mb-2">Write a short bio</h3>
+                        <p className="text-center text-sm text-gray-500 mb-4">
+                            Start with a fun food fact! (Max 150 characters)
+                        </p>
+                        <textarea
+                            value={profileData.bio}
+                            onChange={(e) => updateProfile('bio', e.target.value)}
+                            maxLength="150"
+                            className="w-full h-24 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B6B] outline-none resize-none"
+                            placeholder="The quickest way to my heart is through a plate of..."
+                        ></textarea>
+                        <p className="text-right text-sm text-gray-400 mt-1">
+                            {profileData.bio.length} / 150
+                        </p>
                     </div>
                 )}
                 
