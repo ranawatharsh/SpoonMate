@@ -183,7 +183,7 @@ const DashboardPage = ({ userInfo, onLogout }) => {
     return (
         <div className="min-h-screen bg-[#FFF8F0] flex flex-col items-center">
             <header className="w-full p-4 flex justify-between items-center">
-                 <img src="/SpoonM.jpg" alt="SpoonMate Logo" className="h-10" />
+                 <img src="/SpoonM.png" alt="SpoonMate Logo" className="h-10" />
                  <button onClick={onLogout} className="text-sm font-semibold text-gray-500 hover:text-gray-800">Logout</button>
             </header>
 

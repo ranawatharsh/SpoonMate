@@ -37,7 +37,7 @@ const LoginPage = ({ onSignUpClick, onLoginSuccess }) => {
 
     return (
         <div className="min-h-screen bg-[#FFF8F0] flex flex-col items-center justify-center p-4">
-            <img src="/SpoonM.jpg" alt="SpoonMate Logo" className="h-20 mb-8" />
+            <img src="/SpoonM.png" alt="SpoonMate Logo" className="h-20 mb-8" />
             <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
                 <h2 className="text-3xl font-bold text-center text-[#4A4A4A] mb-2">Welcome Back!</h2>
                 <form onSubmit={handleLogin}>
